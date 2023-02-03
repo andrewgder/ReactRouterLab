@@ -1,36 +1,51 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 const Red = (props) => {
   return (
-    <div className='red'>
+    <div className="red">
       <h1>RED</h1>
     </div>
-  )
-}
+  );
+};
 
 const Blue = (props) => {
   return (
-    <div className='blue'>
+    <div className="blue">
       <h1>BLUE</h1>
     </div>
-  )
-}
+  );
+};
 
 const Main = (props) => {
   return (
-    <div id='container'>
+    <BrowserRouter>
+      <div id="container">
+        <div id="navbar">
+          {/* navigation here */}
+          <Link to="/blue">Go to Blue</Link>
+          <Link to="/red">Go to Red</Link>
+        </div>
 
-      <div id='navbar'>
-        {/* navigation here */}
+        <div id="main-section">
+          {" "}
+          <Route path="/blue">
+            <Blue />
+          </Route>
+          <Route path="/red">
+            <Red />
+          </Route>
+          <Route exact path="/">
+            {" "}
+            {/* the new route */}
+            <Red />
+          </Route>
+        </div>
       </div>
+    </BrowserRouter>
+  );
+};
 
-      <div id='main-section'>
-        {/* routes here */}
-      </div>
-    </div>
-  )
-}
-
-const app = document.getElementById('app')
-ReactDOM.render(<Main />, app)
+const app = document.getElementById("app");
+ReactDOM.render(<Main />, app);
